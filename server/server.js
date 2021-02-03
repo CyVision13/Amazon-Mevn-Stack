@@ -11,6 +11,8 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+
+
 mongoose.connect(
     "mongodb+srv://root:VhECxzpgo8CXGdN4@amazon-clone.eao6f.mongodb.net/amaz?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true },
     (err) => {
