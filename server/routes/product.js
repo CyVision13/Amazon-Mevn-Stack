@@ -13,6 +13,9 @@ router.post(
             product.description = req.body.description;
             product.photo = req.body.photo;
             product.stockQuantity = req.body.stockQuantity;
+            product.price = req.body.price
+            product.category = req.body.categoryID
+            product.owner = req.body.ownerID
             await product.save();
 
             res.json({
@@ -35,8 +38,8 @@ router.get("/products", async(req, res) => {
 
         res.status(200).json({
             success: true,
-            products
-        })
+            products,
+        });
     } catch (err) {
         res.status(500).json({
             success: false,
@@ -52,8 +55,8 @@ router.get("/products/:id", async(req, res) => {
 
         res.status(200).json({
             success: true,
-            product
-        })
+            product,
+        });
     } catch (err) {
         res.status(500).json({
             success: false,
@@ -63,6 +66,30 @@ router.get("/products/:id", async(req, res) => {
 });
 
 // PUT request - Update a single product
+router.put("/products/:id", async(req, res) => {
+    try {
+        let product = await Product.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                title: req.body.title,
+                price: req.body.price,
+                category: req.body.categoryID,
+                photo: req.body.photo,
+                description: req.body.description,
+                owner: req.body.ownerID,
+            },
+        }, { upsert: true });
+
+        res.status(200).json({
+            success: true,
+            updatedProduct: product,
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
+    }
+});
 
 // DELETE request - delete a single product
 
