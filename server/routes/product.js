@@ -92,5 +92,21 @@ router.put("/products/:id", async(req, res) => {
 });
 
 // DELETE request - delete a single product
+router.delete("/products/:id", async(req, res) => {
+    try {
+        let deletedProduct = await Product.findOneAndDelete({ _id: req.params.id }, );
 
+        if (deletedProduct) {
+            res.status(200).json({
+                success: true,
+                message: "Successfully Deleted"
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
+    }
+});
 module.exports = router;
