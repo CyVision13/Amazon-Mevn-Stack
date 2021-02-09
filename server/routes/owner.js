@@ -26,7 +26,6 @@ router.post("/owners", async(req, res) => {
 router.get("/owners", async(req, res) => {
     try {
         let owners = await Owner.find();
-
         res.json({
             owners,
         });
