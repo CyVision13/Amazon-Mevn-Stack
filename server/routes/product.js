@@ -14,8 +14,8 @@ router.post(
             product.photo = req.body.photo;
             product.stockQuantity = req.body.stockQuantity;
             product.price = req.body.price
-            product.category = req.body.categoryID
-            product.owner = req.body.ownerID
+            product.categoryID = req.body.categoryID
+            product.ownerID = req.body.ownerID
             await product.save();
 
             res.json({
