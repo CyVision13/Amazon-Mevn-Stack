@@ -18,7 +18,7 @@
               </div>
               <!-- Owner Dropdown -->
               <div class="a-spacing-top-medium">
-                <label for="">Category</label>
+                <label for="">Owner</label>
                 <select name="" id="" class="a-select-option">
                   <option value="1">1</option>
                   <option value="2">2</option>
