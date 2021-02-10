@@ -7,6 +7,7 @@ router.post("/owners", async(req, res) => {
         let owner = new Owner();
         owner.name = req.body.name;
         owner.about = req.body.about;
+        owner.photo = req.body.photo
         await owner.save();
 
         res.json({
