@@ -72,10 +72,11 @@ router.put("/products/:id", async(req, res) => {
             $set: {
                 title: req.body.title,
                 price: req.body.price,
-                category: req.body.categoryID,
+                categoryID: req.body.categoryID,
                 photo: req.body.photo,
                 description: req.body.description,
-                owner: req.body.ownerID,
+                ownerID: req.body.ownerID,
+                stockQuantity: req.body.stockQuantity
             },
         }, { upsert: true });
 
