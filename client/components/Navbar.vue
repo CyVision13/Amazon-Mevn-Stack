@@ -12,7 +12,9 @@
             </div>
           </div>
           <!-- Search bar -->
-          <div class="com-sm-6 pt-0"></div>
+          <div class="com-sm-6 pt-0">
+              <Search/>
+          </div>
 
           <div class="clas-sm-4"></div>
         </div>
