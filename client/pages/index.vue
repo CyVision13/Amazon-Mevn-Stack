@@ -1,35 +1,24 @@
 <template>
-  <div class="container">
-    <nuxt-link to="/products" class="a-button-buy-again">Add a new product</nuxt-link>
-    <div>
-      <Logo />
-      <h1 class="title">
-        client
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <main class="listingPage">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-2 col-lg-3 md-4 col-sm-4">
+          <!-- Sidebar -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-xl-10 col-lg-9 md-8 col-sm-8">
+          <FeaturedProduct/>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
-export default {}
+export default {
+
+}
 </script>
 
 <style>
