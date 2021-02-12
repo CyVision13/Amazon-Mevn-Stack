@@ -7,7 +7,9 @@
         <ul class="a-unordered-list a-horizontal a-size-small">
           <li>
             <span class="a-list-item">
-              <a class="a-link-normal a-color-tertiary" href="#">Category</a>
+              <a class="a-link-normal a-color-tertiary" href="#">{{
+                product.categoryID.type
+              }}</a>
             </span>
           </li>
           <li>
@@ -15,7 +17,9 @@
           </li>
           <li>
             <span class="a-list-item">
-              <a class="a-link-normal a-color-tertiary" href="#">Product Title</a>
+              <a class="a-link-normal a-color-tertiary" href="#">{{
+                product.title
+              }}</a>
             </span>
           </li>
         </ul>
@@ -30,7 +34,7 @@
               <!-- Image -->
               <div clas="imgBlock">
                 <div class="eBooksimg">
-                  <img src="/img/featuredProduct.jpg" class="img-fluid" />
+                  <img :src="product.photo" class="img-fluid" />
                 </div>
               </div>
 
@@ -44,14 +48,14 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                       <div class="smallAuthorImageContainer">
                         <a href="#">
-                          <img src="/img/featuredProduct.jpg" class="img-fluid" />
+                          <img :src="product.photo" class="img-fluid" />
                         </a>
                       </div>
                     </div>
                     <!-- Author's Name -->
                     <div class="col-xl-4 col-lg-3 col-md-3 col-sm-3 col-3">
                       <div class="authorNameCol">
-                        <a href="#">Walter Isaacson</a>
+                        <a href="#">{{ product.ownerID.name }}</a>
                       </div>
                     </div>
                     <!-- Author's Follow Button -->
@@ -77,7 +81,7 @@
               <!-- Product Title -->
               <div class="titleDiv">
                 <h1 class="productTitle">
-                  <span class="largeTitle">Harry Potter</span>
+                  <span class="largeTitle">{{ product.title }}</span>
                   <span class="smallTitle">Paperback</span>
                 </h1>
               </div>
@@ -85,12 +89,13 @@
               <div class="bylineinfo">
                 by
                 <a href="#" class="authorName">
-                  Walter Isaacson
+                  {{ product.ownerID.name }}
                   <i
                     class="fas fa-chevron-down"
                     style="font-size: 8px !important; color: #555 !important;"
                   ></i>
-                </a> (Author)
+                </a>
+                (Author)
               </div>
               <div class="reviewGroup"></div>
               <hr style="margin-top: 10px;" />
@@ -99,7 +104,9 @@
                 <div class="formats">
                   <a href="#" class="link-expander">
                     >
-                    <span class="tmmShowPrompt">See all 18 formats and editions</span>
+                    <span class="tmmShowPrompt"
+                      >See all 18 formats and editions</span
+                    >
                   </a>
                   <ul>
                     <!-- Kindle -->
@@ -150,7 +157,8 @@
                           <a href="#" class="a-size-mini">
                             <span class="kcpAppBox">
                               <span class="a-declarative">
-                                <span class="a-text-bold">Free App</span> with your Audible Trial
+                                <span class="a-text-bold">Free App</span> with
+                                your Audible Trial
                               </span>
                             </span>
                           </a>
@@ -176,7 +184,9 @@
               </div>
               <!-- Description -->
               <div class="bookDescription">
-                <div class="bookDescriptionInner">This book is awesome</div>
+                <div class="bookDescriptionInner">
+                  {{ product.description }}
+                </div>
               </div>
 
               <!-- Product specification -->
@@ -206,14 +216,21 @@
                   <div class="clearfix">
                     <div class="float-left">
                       <form>
-                        <input type="radio" id="test1" name="radio-group checked" />
+                        <input
+                          type="radio"
+                          id="test1"
+                          name="radio-group checked"
+                        />
                         <label for="test1">Buy Now</label>
                       </form>
                     </div>
 
                     <!-- Product Price -->
                     <div class="float-right">
-                      <span class="a-size-medium a-color-price offer-price a-text-normal">$39</span>
+                      <span
+                        class="a-size-medium a-color-price offer-price a-text-normal"
+                        >${{ product.price }}</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -241,24 +258,38 @@
                   <div class="a-section a-spacing-none">
                     <span class="a-size-medium a-color-success">In Stock</span>
                   </div>
-                  <div class="a-section a-spacing-mini">Shipts from and sold by Amazon.com</div>
+                  <div class="a-section a-spacing-mini">
+                    Ships from and sold by Amazon.com
+                  </div>
                 </div>
 
                 <div class="a-section">
                   <div class="a-button-stack">
-                    <span class="a-spacing-small a-button-primary a-button-icon">
+                    <span
+                      class="a-spacing-small a-button-primary a-button-icon"
+                    >
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-cart"></i>
-                        <input type="submit" name="submit.add-to-cart" class="a-button-input" />
+                        <input
+                          type="submit"
+                          name="submit.add-to-cart"
+                          class="a-button-input"
+                        />
                         <span class="a-button-text">Add to Cart</span>
                       </span>
                     </span>
                   </div>
                   <div class="a-button-stack">
-                    <span class="a-spacing-small a-button-primary a-button-icon">
+                    <span
+                      class="a-spacing-small a-button-primary a-button-icon"
+                    >
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-buynow"></i>
-                        <input type="submit" name="submit.add-to-cart" class="a-button-input" />
+                        <input
+                          type="submit"
+                          name="submit.add-to-cart"
+                          class="a-button-input"
+                        />
                         <span class="a-button-text">Buy Now</span>
                       </span>
                     </span>
@@ -296,7 +327,9 @@
                       </form>
                     </div>
                     <div class="float-right">
-                      <span class="a-color-base offer-price a-text-normal">$39</span>
+                      <span class="a-color-base offer-price a-text-normal"
+                        >${{ product.price }}</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -320,7 +353,7 @@
                   <div class="authorContent">
                     <div class="authorImageSingle">
                       <a href="#">
-                        <img src="/img/featuredProduct.jpg" class="img-fluid" />
+                        <img :src="product.photo" class="img-fluid" />
                       </a>
                     </div>
                     <div class="authorFollow">
@@ -335,7 +368,7 @@
                 <div class="col-md-10 col-sm-8 col-8 pl-0">
                   <div class="mainContent">
                     <h3>Biography</h3>
-                    <div id="authorBio">My name is Walter White</div>
+                    <div id="authorBio">{{ product.ownerID.about }}</div>
                   </div>
                 </div>
               </div>
@@ -346,3 +379,21 @@
     </div>
   </main>
 </template>
+
+<script>
+export default {
+  async asyncData({ $axios, params }) {
+    try {
+      let response = await $axios.$get(`/api/products/${params.id}`);
+      console.log(response);
+      return {
+        product: response.product
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+</script>
+
+<style></style>
