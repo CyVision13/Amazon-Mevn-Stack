@@ -1,16 +1,17 @@
+const URL = "http://localhost:3000";
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'client',
+        title: "client",
         meta: [
-            { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: '' }
+            { charset: "utf-8" },
+            { name: "viewport", content: "width=device-width, initial-scale=1" },
+            { hid: "description", name: "description", content: "" }
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-            { rel: 'stylesheet', href: '/css/all.css' },
-            { rel: 'stylesheet', href: '/css/default.css' },
+            { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+            { rel: "stylesheet", href: "/css/all.css" },
+            { rel: "stylesheet", href: "/css/default.css" }
         ]
     },
 
@@ -29,23 +30,26 @@ export default {
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
         // https://go.nuxtjs.dev/bootstrap
-        'bootstrap-vue/nuxt',
+        "bootstrap-vue/nuxt",
         // https://go.nuxtjs.dev/axios
-        '@nuxtjs/axios',
+        "@nuxtjs/axios",
         // https://go.nuxtjs.dev/pwa
-        '@nuxtjs/pwa',
+        "@nuxtjs/pwa"
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
-    axios: {},
+    axios: {
+        proxy: true,
+        baseURL: URL
+    },
 
     // PWA module configuration: https://go.nuxtjs.dev/pwa
     pwa: {
         manifest: {
-            lang: 'en'
+            lang: "en"
         }
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {}
-}
+};
