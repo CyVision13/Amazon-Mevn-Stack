@@ -24,6 +24,7 @@
                     type="text"
                     id="ap-customer_name"
                     class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info"
+                    v-model="name"
                   />
                 </div>
                 <!-- Email -->
@@ -35,6 +36,7 @@
                     type="email"
                     id="ap-customer_name"
                     class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info"
+                    v-model="email"
                   />
                 </div>
 
@@ -47,6 +49,7 @@
                     type="password"
                     id="ap-customer_name"
                     class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info"
+                    v-model="password"
                   />
                   <div class="a-alert-container">
                     <div class="a-alert-content">
@@ -58,7 +61,7 @@
                 <div class="a-row a-spacing-extra-large mb-4">
                   <span class="a-button-primary">
                     <span class="a-button-inner">
-                      <span class="a-button-text">
+                      <span @click="onSignup" class="a-button-text">
                         Create your Amazon account
                       </span>
                     </span>
@@ -70,12 +73,14 @@
                       <a href="">Privacy Notice</a>
                     </b>
                   </div>
-                  <hr>
+                  <hr />
                   <div class="a-row">
-                      <b>
-                          Already have an account?
-                          <nuxt-link to="/login" class="a-link-emphasis">Sign in</nuxt-link>
-                      </b>
+                    <b>
+                      Already have an account?
+                      <nuxt-link to="/login" class="a-link-emphasis"
+                        >Sign in</nuxt-link
+                      >
+                    </b>
                   </div>
                 </div>
               </div>
@@ -89,7 +94,40 @@
 
 <script>
 export default {
-    layout:'none'
+  layout: "none",
+
+  data() {
+      return {
+          name:"",
+          email:"",
+          password:""
+      }
+  },
+  methods: {
+      async onSignup(){
+          try{
+              let data = {
+                  name:this.name,
+                 email : this.email,
+                 password:this.password
+              }
+
+              let response = await this.$axios.$post("/api/auth/signup",data)
+
+              if(response.success){
+                  this.$auth.loginWith("local",{
+                      data:{
+                          email:this.email,
+                          password:this.password
+                      }
+                  })
+                  this.$router.push("/")
+              }
+          }catch(err){
+              console.log(err);
+          }
+      }
+  }
 };
 </script>
 
