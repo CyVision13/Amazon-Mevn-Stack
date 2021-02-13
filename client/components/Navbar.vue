@@ -13,7 +13,7 @@
           </div>
           <!-- Search bar -->
           <div class="com-sm-6 pt-0">
-              <Search/>
+            <Search />
           </div>
 
           <div class="clas-sm-4"></div>
@@ -87,21 +87,36 @@
                 </span>
               </a>
               <span class="icp-nav-link-border"></span>
-              <nuxt-link
-                to="/register"
-                class="nav-a nav-a-2"
-                id="nav-link-accountList"
-                tabindex="0"
-              >
-                <span class="nav-line-1">Hello, Sign in</span>
-                <span class="nav-line-2"
-                  >Account &amp; Lists
-                  <span
-                    class="nav-icon nav-arrow"
-                    style="visibility:visible"
-                  ></span>
-                </span>
-              </nuxt-link>
+              <template v-if="$auth.state.loggedIn">
+                <nuxt-link
+                  to="/register"
+                  class="nav-a nav-a-2"
+                  id="nav-link-accountList"
+                  tabindex="0"
+                >
+                  <span class="nav-line-1">Hello, </span>
+                  <span class="nav-line-2">
+                    {{ $auth.$state.user.name}}
+                  </span>
+                </nuxt-link>
+              </template>
+              <template v-else>
+                <nuxt-link
+                  to="/register"
+                  class="nav-a nav-a-2"
+                  id="nav-link-accountList"
+                  tabindex="0"
+                >
+                  <span class="nav-line-1">Hello, Sign in</span>
+                  <span class="nav-line-2"
+                    >Account &amp; Lists
+                    <span
+                      class="nav-icon nav-arrow"
+                      style="visibility:visible"
+                    ></span>
+                  </span>
+                </nuxt-link>
+              </template>
               <nuxt-link to="/orders" class="nav-a nav-a-2 nav-single-row-link">
                 <span class="nav-line-1"></span>
                 <span class="nav-line-2">Orders</span>
@@ -110,7 +125,12 @@
                 <span aria-hidden="true" class="nav-line-1"></span>
                 <span aria-hidden="true" class="nav-line-2">Cart</span>
                 <span class="nav-cart-icon nav-sprite"></span>
-                <span aria-hidden="true" id="nav-cart-count" class="nav-cart-count nav-cart-0">0</span>
+                <span
+                  aria-hidden="true"
+                  id="nav-cart-count"
+                  class="nav-cart-count nav-cart-0"
+                  >0</span
+                >
               </nuxt-link>
             </div>
           </div>
