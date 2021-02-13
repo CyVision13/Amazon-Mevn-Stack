@@ -51,4 +51,35 @@ router.get('/auth/user', verifyToken, async(req, res) => {
     }
 })
 
+/* Login Route */
+router.post("/auth/login", async(req, res) => {
+    try {
+        let foundUser = await User.findOne({ email: req.body.email })
+        if (!foundUser) {
+            res.status(403).json({
+                success: false,
+                message: "Authentication failed, User not found"
+            })
+        } else {
+            if (foundUser.comparePassword(req.body.password)) {
+                let token = jwt.sign(foundUser.toJSON(), 'kghjvvsf46723426787f523fd5b2523', {
+                    expiresIn: 604800 // 1 week
+                })
+
+                res.json({ success: true, token })
+            } else {
+                res.status(403).json({
+                    success: false,
+                    message: "Authentication Failed, Wrong Password!"
+                })
+            }
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+})
+
 module.exports = router
