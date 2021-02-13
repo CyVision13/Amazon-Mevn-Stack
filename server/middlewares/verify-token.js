@@ -1,28 +1,29 @@
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 
 module.exports = function(req, res, next) {
-    let token = req.headers['x-access-token'] || req.headers['authorization']
+    let token = req.headers["x-access-token"] || req.headers["authorization"];
 
-    let checkBearer = "Bearer "
-    if (token.startsWith(checkBearer)) {
-        token = token.slice(checkBearer.length, token.length)
-    }
+    let checkBearer = "Bearer ";
+
     if (token) {
-        jwt.verify(token, process.e.SECRET, (err, decoded) => {
+        if (token.startsWith(checkBearer)) {
+            token = token.slice(checkBearer.length, token.length);
+        }
+        jwt.verify(token, 'kghjvvsf46723426787f523fd5b2523', (err, decoded) => {
             if (err) {
                 res.json({
                     success: false,
-                    message: "Failed to authenticate"
-                })
+                    message: "Failed to authenticate",
+                });
             } else {
-                req.decoded = decoded
-                next()
+                req.decoded = decoded;
+                next();
             }
-        })
+        });
     } else {
         res.json({
             success: false,
-            message: "No token Provided"
-        })
+            message: "No token Provided",
+        });
     }
-}
+};
