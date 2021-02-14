@@ -31,4 +31,24 @@ router.post("/reviews/:productID", verifyToken, async(req, res) => {
     }
 });
 
+router.get("/reviews/:productID", async(req, res) => {
+    try {
+        const productReviews = await Review.find({
+                productID: req.params.productID,
+            })
+            .populate("user")
+            .exec();
+
+        res.json({
+            success: true,
+            reviews: productReviews
+        })
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
+    }
+});
+
 module.exports = router;
