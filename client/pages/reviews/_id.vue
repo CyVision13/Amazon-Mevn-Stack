@@ -40,9 +40,13 @@
               </div>
               <div class="a-row a-spacing-top-medium">
                 <!-- Choose a Photo -->
-                <label class="choosefile-button">
+                <label >
                   <i class="fal fa-plus"></i>
-                  <input type="text" v-model="photoUrl" />
+                  <input  type="text"
+                  class="a-input-text"
+                  style="width: 70%;"
+                  placeholder="photo url"
+                  v-model="photoUrl" />
                 </label>
               </div>
               <div class="a-spacing-top-large"></div>
@@ -99,8 +103,8 @@
             </div>
             <div class="a-row text-right a-spacing-top-large">
               <span class="a-button-register">
-                <span class="a-button-inner">
-                  <span class="a-button-text">Submit</span>
+                <span class="a-button-inner" @click="onAddReview">
+                  <span class="a-button-text" >Submit</span>
                 </span>
               </span>
             </div>
@@ -153,7 +157,13 @@ export default {
         data.rating = this.rating;
         data.photoUrl = this.photoUrl;
         let response = await this.$axios.$post(`/api/reviews/${this.$route.params.id}`,data)
-      } catch (err) {}
+
+        if(response.success){
+          this.$router.push(`/products/${this.$route.params.id}`)
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 };
