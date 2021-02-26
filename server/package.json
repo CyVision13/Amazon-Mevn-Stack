@@ -19,6 +19,7 @@
     "mongoose": "^5.11.14",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
-    "multer-s3": "^2.9.0"
+    "multer-s3": "^2.9.0",
+    "vue-star-rating": "^1.7.0"
   }
 }
