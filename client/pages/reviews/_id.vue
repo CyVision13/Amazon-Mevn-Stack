@@ -29,7 +29,7 @@
               <div class="a-row">
                 <!-- Rating -->
                 <no-ssr placeholder="...">
-                  <VueStarRating v-model="rating"></VueStarRating>
+                  <vue-star-rating v-model="rating"></vue-star-rating>
                 </no-ssr>
               </div>
               <div class="a-row a-spacing-top-large">
