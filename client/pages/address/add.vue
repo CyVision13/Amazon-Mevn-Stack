@@ -50,7 +50,7 @@
                   <div class="a-spacing-top-medium">
                     <label style="margin-bottom: 0px;">Country/Region</label>
                     <select class="a-select-option" v-model="country">
-                      <option value>--</option>
+                      <option v-for="country in countries" :key="country.alpha2Code" :value="country.name">{{country.name}}</option>
                       <option></option>
                     </select>
                   </div>
@@ -86,8 +86,12 @@
                   <!-- City -->
                   <div class="a-spacing-top-medium">
                     <label style="margin-bottom: 0px;">City</label>
-                    <input type="text" class="a-input-text" style="width: 100%;"
-                    / v-model="city" >
+                    <input
+                      type="text"
+                      class="a-input-text"
+                      style="width: 100%;"
+                      v-model="city"
+                    />
                   </div>
                   <!-- State -->
                   <div class="a-spacing-top-medium">
@@ -205,9 +209,20 @@
 </template>
 <script>
 export default {
+  async asyncData({ $axios}) {
+    try {
+let response = await $axios.$get('/api/countries')
+
+return {
+  countries : response
+}
+    } catch (err) {
+      console.log(err);
+    }
+  },
   data() {
     return {
-      county: "",
+      country: "Iran (Islamic Republic of)",
       fullName: "",
       streetAddress1: "",
       streetAddress2: "",
@@ -223,7 +238,7 @@ export default {
     async onAddAddress() {
       try {
         let data = {
-          county: this.county,
+          country: this.country,
           fullName: this.fullName,
           streetAddress1: this.streetAddress1,
           streetAddress2: this.streetAddress2,
@@ -237,7 +252,7 @@ export default {
 
         let response = await this.$axios.$post("/api/addresses", data);
         if (response.success) {
-          this.$router.push("/")
+          this.$router.push("/");
         }
       } catch (err) {
         console.log(err);
