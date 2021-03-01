@@ -21,12 +21,27 @@ router.post("/addresses", verifyToken, async(req, res) => {
             success: true,
             message: "Successfully added an address",
         });
-    } catch {
+    } catch (err) {
         res.status(500).json({
             success: false,
             message: err.message,
         });
     }
 });
+
+router.get('/addresses', veriftyToken, async(req, res) => {
+    try {
+        let addresses = await Address.find({ user: req.decoded._id })
+        res.json({
+            success: true,
+            addresses: addresses
+        })
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
+    }
+})
 
 module.exports = router;
