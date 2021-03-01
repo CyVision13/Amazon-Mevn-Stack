@@ -6,7 +6,7 @@
         <div class="col-lg-4 col-md-5 col-sm-12">
           <!-- Total Customer reviews -->
           <a href="#" class="a-color-base">
-            <h2>1,354 customer reviews</h2>
+            <h2>{{product.rating.length}} customer reviews</h2>
           </a>
           <div class="cr-widget-ACR">
             <i class="fas fa-star"></i>
@@ -149,7 +149,7 @@
             <!-- Link to another Review page -->
             <span class="a-button-base writeReviewButton cm-cr-button-wide">
               <span class="a-button-inner">
-                <a href="#" class="a-button-text">Write a customer review</a>
+                <nuxt-link :to="`/reviews/${product._id}`" class="a-button-text">Write a customer review</nuxt-link>
               </span>
             </span>
           </div>
@@ -247,7 +247,7 @@
             <div class="card-padding">
               <div class="review-header">
                 <h3>
-                  <span class="a-size-base">Showing 1-8 of 1,354 reviews</span>
+                  <span class="a-size-base">Showing 1-8 of {{product.rating.length}} reviews</span>
                 </h3>
               </div>
               <div class="review-sort-type">
@@ -264,7 +264,7 @@
               </div>
 
               <!-- Reviews -->
-              <div class="review-body">
+              <div class="review-body" v-for="review in reviews" :key="review._id">
                 <div class="genome-widget">
                   <a href="#">
                     <div class="profile-avatar">
@@ -274,18 +274,18 @@
                     </div>
                     <!-- Review Owner -->
                     <div class="profile-content">
-                      <span class="a-profile-name">Review Owner</span>
+                      <span class="a-profile-name">{{review.user.name}}</span>
                     </div>
                   </a>
                 </div>
                 <div class="a-row">
                   <!-- Review Star -->
                   <a href="#">
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star" v-for="i in review.rating" :key="i"></i>
                   </a>
                   <span class="a-letter-space"></span>
                   <!-- Review Headline -->
-                  <a href="#" class="review-title">Review Headline</a>
+                  <a href="#" class="review-title">{{review.headline}}</a>
                 </div>
                 <span class="review-date">June 28, 2016</span>
                 <div class="review-data">
@@ -321,7 +321,7 @@
             <div class="a-row">
               <span class="a-button a-button-base writeReviewButton" id="a-autoid-15">
                 <span class="a-button-inner">
-                  <a href="#" class="a-button-text" role="button">Write a customer review</a>
+                  <nuxt-link :to="`/reviews/${product._id}`" href="#" class="a-button-text" role="button">Write a customer review</nuxt-link>
                 </span>
               </span>
             </div>
@@ -334,5 +334,7 @@
 </template>
 
 <script>
-export default {};
+export default {
+    props:["product","reviews"]
+};
 </script>

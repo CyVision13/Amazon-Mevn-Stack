@@ -393,7 +393,7 @@ export default {
       ])
       return {
         product: productResponse.product,
-        reviews: reviewsResponse.rewiews
+        reviews: reviewsResponse.reviews
       };
     } catch (err) {
       console.log(err);
