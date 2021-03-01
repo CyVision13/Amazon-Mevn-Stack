@@ -34,7 +34,9 @@ router.post(
 // Get request - get all products
 router.get("/products", async(req, res) => {
     try {
-        let products = await Product.find();
+        let products = await Product.find()
+            .populate("ownerID categoryID")
+            .exec();
 
         res.status(200).json({
             success: true,
