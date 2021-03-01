@@ -4,6 +4,7 @@ const veriftyToken = require("../middlewares/verify-token");
 
 router.post("/addresses", verifyToken, async(req, res) => {
     try {
+
         let address = new Address();
         address.user = req.decoded._id;
         address.country = req.body.country;
