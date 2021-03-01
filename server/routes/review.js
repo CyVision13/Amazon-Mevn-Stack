@@ -14,7 +14,7 @@ router.post("/reviews/:productID", verifyToken, async(req, res) => {
         review.productID = req.params.productID;
 
         await Product.update({
-            $push: { rating: review._id }
+            $push: { reviews: review._id }
         });
 
         const savedReview = await review.save();

@@ -126,9 +126,7 @@
 
 
 export default {
-  components: {
-    
-  },
+ 
   async asyncData({ $axios, params }) {
     try {
       let response = await $axios.$get(`/api/products/${params.id}`);

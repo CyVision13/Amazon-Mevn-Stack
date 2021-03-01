@@ -36,6 +36,7 @@ router.get("/products", async(req, res) => {
     try {
         let products = await Product.find()
             .populate("ownerID categoryID")
+            .populate("reviews", "rating")
             .exec();
 
         res.status(200).json({
@@ -55,6 +56,7 @@ router.get("/products/:id", async(req, res) => {
     try {
         let product = await Product.findOne({ _id: req.params.id })
             .populate("ownerID categoryID")
+            .populate("reviews", "rating")
             .exec();
 
         res.status(200).json({
