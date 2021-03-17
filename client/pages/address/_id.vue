@@ -73,7 +73,7 @@
                       class="a-input-text"
                       style="width: 100%;"
                      
-                      v-model="streetAddress1"
+                      v-model="streetAddress"
                       :placeholder="address.streetAddress"
                     />
                     <!-- Street Address 2 -->
@@ -216,7 +216,7 @@
 </template>
 <script>
 export default {
-  async asyncData({ $axios}) {
+  async asyncData({ $axios , params}) {
     try {
 let response = $axios.$get('/api/countries')
 let singleAddress = $axios.$get(`/api/addresses/${params.id}`)
@@ -254,8 +254,9 @@ return {
         let data = {
           country: this.country,
           fullName: this.fullName,
+              
+
           streetAddress: this.streetAddress1 + "" + this.streetAddress2 ,
-        
           city: this.city,
           state: this.state,
           zipCode: this.zipCode,
@@ -264,9 +265,9 @@ return {
           securityCode: this.securityCode
         };
 
-        let response = await this.$axios.$put("/api/addresses", data);
+        let response = await this.$axios.$put(`/api/addresses/${this.$route.params.id}`, data);
         if (response.success) {
-          this.$router.push("/");
+          this.$router.push("/address");
         }
       } catch (err) {
         console.log(err);

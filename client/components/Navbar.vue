@@ -29,7 +29,7 @@
                     >Deliver to</span
                   >
                   <span class="nav-line-2" id="glow-ingress-line2"
-                    >Mazandaran</span
+                    >{{$auth.$state.user.address.city}}</span
                   >
                 </div>
               </nuxt-link>
