@@ -256,7 +256,7 @@ return {
           fullName: this.fullName,
               
 
-          streetAddress: this.streetAddress1 + "" + this.streetAddress2 ,
+          streetAddress: this.streetAddress1 + " " + this.streetAddress2 ,
           city: this.city,
           state: this.state,
           zipCode: this.zipCode,
