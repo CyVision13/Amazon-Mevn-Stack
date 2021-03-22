@@ -33,6 +33,20 @@ export const mutations = {
                 state.cartLength += product.quantity
             })
         }
+    },
+    changeQty(state, { product, qty }) {
+        let cartProduct = state.cart.find(prod => prod._id === product._id)
+        cartProduct.quantity = qty
+
+        state.cartLength = 0;
+        if (state.cart.length > 0) {
+            state.cart.map(product => {
+                state.cartLength += product.quantity
+            })
+        }
+
+        let indexOfProduct = state.cart.indexOf(cartProduct)
+        state.cart.splice(indexOfProduct, 1, cartProduct)
     }
 }
 export const getters = {
