@@ -25,6 +25,10 @@ export default {
             src: '~/plugins/vue-star-rating', // <--- file name
             mode: 'client'
         },
+        {
+            src: "~/plugins/localStorage.js",
+            mode: 'client'
+        }
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
