@@ -4,7 +4,7 @@ export const state = () => ({
 })
 export const actions = {
     addProductToCart({ state, commit }, product) {
-        const cartProducct = state.cart.find(prod => prod._id === product._id)
+        const cartProduct = state.cart.find(prod => prod._id === product._id)
 
         if (!cartProduct) {
             commit("pushProductToCart", product)
