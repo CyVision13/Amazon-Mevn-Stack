@@ -240,6 +240,7 @@ return {
       fullName: "",
       streetAddress1: "",
       streetAddress2: "",
+      streetAddress: "",
       city: "",
       state: "",
       zipCode: "",
