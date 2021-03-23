@@ -32,14 +32,16 @@
                       <div class="displayAddressDiv">
                         <!-- User's address -->
                         <ul class="displayAddressUL">
-                          <li>fullName</li>
-                          <li>streetAddress</li>
-                          <li>city</li>
-                          <li>country</li>
+
+                          <li>{{$auth.$state.user.name}}</li>
+                          <!-- 
+                          <li>{{$auth.$state.user.address.streetAddress}}</li>
+                          <li>{{$auth.$state.user.address.city}}</li>
+                          <li>{{$auth.$state.user.address.country}}</li>
                           <li>
                             Phone:
-                            <span dir="ltr">phoneNumber</span>
-                          </li>
+                            <span dir="ltr">{{$auth.$state.user.address.phoneNumber}}</span>
+                          </li> -->
                         </ul>
                       </div>
                     </div>
@@ -120,23 +122,23 @@
                 <div class="row">
                   <!-- Cart -->
                   <div class="col-xl-6 col-lg-7 col-sm-6 col-12">
-                    <div class="a-row a-spacing-base">
+                    <div class="a-row a-spacing-base" v-for="product in getCart" :key="product._id">
                       <div class="row">
                         <!-- Product's photo -->
                         <div class="col-sm-3 col-3">
-                          <img src style="width: 100px;" />
+                          <img :src="product.photo" style="width: 100px;" />
                         </div>
                         <!-- Product's Title -->
                         <div class="col-sm-9 col-9">
                           <div class="a-row">
-                            <strong>Product Title</strong>
+                            <strong>{{product.title}}</strong>
                           </div>
                           <!-- Product's owner name -->
-                          <div class="a-row a-size-small">by product owner name</div>
+                          <div class="a-row a-size-small">{{product.ownerID.name}}</div>
                           <div class="a-row">
                             <!-- Product's price -->
                             <span class="a-color-price a-spacing-micro">
-                              <strong dir="ltr">$30</strong>
+                              <strong dir="ltr">${{ product.price * product.quantity}}</strong>
                             </span>
                           </div>
                           <div class="a-row">
@@ -144,7 +146,7 @@
                           </div>
                           <div class="a-row">
                             <!-- Product's quantity -->
-                            <strong>Quantity: 213</strong>
+                            <strong>Quantity: {{product.quantity}}</strong>
                           </div>
                           <div
                             class="a-row a-color-secondary a-size-small"
@@ -243,7 +245,7 @@
                     <div class="row">
                       <!-- Cart's total price -->
                       <div class="col-sm-6">Items:</div>
-                      <div class="col-sm-6 text-right">USD $999</div>
+                      <div class="col-sm-6 text-right">USD ${{ getCartTotalPrice}}</div>
                     </div>
                     <div class="row">
                       <!-- Shipping cost -->
@@ -358,7 +360,12 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex"
+
 export default {
-  layout: "none"
+  layout: "none",
+  computed:{
+    ...mapGetters(["getCart","getCartTotalPrice"])
+  }
 };
 </script>

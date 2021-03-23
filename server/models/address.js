@@ -5,7 +5,7 @@ const AddressSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: "user" },
     country: String,
     fullName: String,
-    streedAddress: String,
+    streetAddress: String,
     city: String,
     state: String,
     zipCode: Number,
